@@ -1,0 +1,47 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Presentacion.Site" %>
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <link href="css/Site.css" rel="stylesheet" />
+    <script src="Funciones%20script/JavaScript1.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div class="menu">
+                <header class="container">
+                    <div class="navbar navbar-inner">
+                        <div class="container">
+
+                            <div class="collapse navbar-collapse pull-right" id="main-menu">
+                                <ul class="nav">
+
+                                    <li class="fadeInDown animated d1"><a href="WebPersonas.aspx" menuid="0" followlink="true">Persona</a></li>
+                                    <li class="fadeInDown animated d2"><a href="WebTurnos.aspx" menuid="1" followlink="true">Turnos</a></li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+                </header>
+
+            </div>
+            <div class="container body-content">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+    </form>
+</body>
+</html>
