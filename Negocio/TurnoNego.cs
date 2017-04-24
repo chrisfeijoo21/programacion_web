@@ -15,7 +15,17 @@ namespace Negocio
 
        public DataTable BuscarPersona()
         {
-            return turnoRepo.ModificarDatos();
+            return turnoRepo.BuscarPersona();
+        }
+
+        public void GuardarTurno(Turno turno)
+       {
+           turnoRepo.GuardarTurno(turno);
+       }
+
+        public static DataSet DropDownPersonas()
+        {
+            return TurnoRepo.DropDownPersonas();
         }
     }
 }

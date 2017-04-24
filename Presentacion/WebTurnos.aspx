@@ -78,6 +78,11 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <div class="col-md-offset-2 col-md-2">
+                            <asp:Button CssClass="btn btn-info" ID="btnGuardarTurno" runat="server" Text="Guardar" OnClick="btnGuardarTurno_Click" />
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
                             <asp:GridView ID="gdvGrillaCambio" runat="server" Visible=" true" AutoGenerateColumns="false" EmptyDataText="No Hay Nada" CssClass="table">
                                 <Columns>

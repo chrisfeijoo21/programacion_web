@@ -15,7 +15,10 @@ namespace Presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            MostrarCombo();
+            if (IsPostBack == false)
+            {
+                llenarDropDownList();
+            }
         }
 
         protected void btnBuscarPersona_Click(object sender, EventArgs e)
@@ -23,19 +26,13 @@ namespace Presentacion
             BuscarPersona();
         }
 
-        public void MostrarCombo()
+        public void llenarDropDownList()
         {
-            string cadenaConexion = "Data Source = HOME-PC\\SQLChristian; initial catalog = BaseWebPrueba; integrated security = true";
-            SqlConnection con = new SqlConnection(cadenaConexion);
-            SqlCommand cmd = new SqlCommand("Select idpersona, Nombre From Personas", con);
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            sda.Fill(ds);
-            ddlPersonas.DataSource = ds;
-
-            ddlPersonas.DataTextField = "Nombre";
+            ddlPersonas.DataSource = TurnoNego.DropDownPersonas();
             ddlPersonas.DataValueField = "idPersona";
+            ddlPersonas.DataTextField = "Nombre";
             ddlPersonas.DataBind();
+            ddlPersonas.Items.Insert(0, new ListItem("Elija una opcion..", "0"));
         }
 
         public void BuscarPersona()
@@ -44,6 +41,25 @@ namespace Presentacion
             gdvGrillaCambio.DataSource = turnoNego.BuscarPersona();
             gdvGrillaCambio.DataBind();
 
+        }
+
+        protected void btnGuardarTurno_Click(object sender, EventArgs e)
+        {
+            GuardarTurno();
+        }
+
+        public void GuardarTurno()
+        {
+            Turno turno = new Turno();
+
+            turno.Persona1 = Convert.ToString(ddlPersonas.SelectedValue.ToString());
+            turno.FechaTurno1 = Convert.ToDateTime(dtp_FechaTurno.Value.ToString());
+            turno.FechaRegistro1 = Convert.ToDateTime(dtp_FechaRegistro.Value.ToString());
+            turno.MotivoTurno1 = txtMotivoTurno.Text;
+            turno.TareasTurno1 = txtTareas.Text;
+
+            TurnoNego turnoNego = new TurnoNego();
+            turnoNego.GuardarTurno(turno);
         }
     }
 }
